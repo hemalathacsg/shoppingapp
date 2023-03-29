@@ -1,1 +1,29 @@
-<p>products works!</p>
+<div class="prodtable">
+    <table border="1">
+        <tr style="text-align: center;">
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Actual Price</th>
+            <th>Product Discounted Price</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let product of productData" style="text-align: center;">
+            <td>{{product.productName}}</td>
+            <td>{{product.productDescription}}</td>
+            <td>{{product.productDiscountPrice}}</td>
+            <td>{{product.productActualPrice}}</td>
+            <td>
+                <div class="button-container">
+                    <button mat-raised-button class="button1">
+                        <!-- <mat-icon>favorite</mat-icon> -->
+                        Add To Cart
+                    </button>
+                    <button mat-raised-button class="button2">
+                        <!-- <mat-icon>favorite</mat-icon> -->
+                        Purchase
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

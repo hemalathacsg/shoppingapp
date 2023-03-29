@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,13 +20,17 @@ import { ProductsComponent } from './products/products.component';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
+import { CartComponent } from './cart/cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SidenavComponent,
     ProductsComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +47,7 @@ import { MatInputModule } from '@angular/material/input';
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,HttpClientModule,MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
