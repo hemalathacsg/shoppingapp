@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../service/product.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-products',
@@ -16,5 +18,22 @@ export class ProductsComponent {
       this.productData=data;
       console.log(this.productData);
     })
+  }
+  addToCart(product: any){
+    // console.log(product);
+    this.productService.addToCart(product).subscribe(
+      (response: any) => {
+          console.log(response);
+          alertify.success("added to cart successfully.");
+
+      },
+      (error: HttpErrorResponse) => {
+          console.log(error);
+      }
+  );
+  }
+  purchase(product:any){
+    console.log(product);
+    alertify.success("purchased the product successfully.");
   }
 }

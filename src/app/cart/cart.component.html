@@ -1,1 +1,24 @@
-<p>cart works!</p>
+<div class="carttable">
+    <table border="1">
+        <tr style="text-align: center;">
+            <th>Product Name</th>
+            <th>Product Description</th>
+            <th>Product Actual Price</th>
+            <th>Product Discounted Price</th>
+            <th>Actions</th>
+        </tr>
+        <tr *ngFor="let cartProduct of cartData" style="text-align: center;">
+            <td>{{cartProduct.productName}}</td>
+            <td>{{cartProduct.productDescription}}</td>
+            <td>{{cartProduct.productActualPrice}}</td>
+            <td>{{cartProduct.productDiscountPrice}}</td>
+            <td>
+                <div class="button-container">
+                    <button mat-raised-button class="button1" (click)="purchase()">purchase</button>
+                    <button mat-raised-button class="button2" (click)="delete(cartProduct.id)">delete</button>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</div>

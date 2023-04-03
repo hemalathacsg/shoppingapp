@@ -1,47 +1,31 @@
 import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Product } from '../_model/product.model';
-
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 import { Product } from "../_model/product.model";
-import { ProductDataService } from "./productData.service";
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ProductService {
-
-//   constructor(private httpClient:HttpClient) { }
-//   public addProduct(product:Product){
-//     //ITHIN THE POST METHOD IT IS RETURNING PRODUCT TYPE AND INSODE () PASS URL 
-//     return this.httpClient.post<Product>("http://localhost:8080/addNewProduct",product);
-//   }
-// }
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
-
-
-  url='http://localhost:8080/addNewProduct'
-  url2='http://localhost:8080/getAllProduct'
+  url='http://localhost:8080/addNewProduct';
+  url2='http://localhost:8080/getAllProduct';
+  url3='http://localhost:8080/addToCart';
+  url4='http://localhost:8080/getAllCartProducts';
 
   constructor(private httpClient: HttpClient) { }
-  
-  // public addProduct(product: Product) {
-  //   return this.productDataService.addProduct(product);
-  // }
 
   listProducts():Observable<any[]>{
-    // console.log("getting alues")
     return this.httpClient.get<any[]>(this.url2);
   }
-
+  listCartProducts():Observable<any[]>{
+    return this.httpClient.get<any[]>(this.url4);
+  }
   public addProduct(product: Product){
     return this.httpClient.post(this.url,product);
+  }
+  public addToCart(product:Product){
+    return this.httpClient.post(this.url3,product);
+  }
+  public delete(id:string){
+
   }
 }

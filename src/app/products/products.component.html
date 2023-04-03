@@ -10,15 +10,15 @@
         <tr *ngFor="let product of productData" style="text-align: center;">
             <td>{{product.productName}}</td>
             <td>{{product.productDescription}}</td>
-            <td>{{product.productDiscountPrice}}</td>
             <td>{{product.productActualPrice}}</td>
+            <td>{{product.productDiscountPrice}}</td>
             <td>
                 <div class="button-container">
-                    <button mat-raised-button class="button1">
+                    <button mat-raised-button class="button1" (click)="addToCart(product)">
                         <!-- <mat-icon>favorite</mat-icon> -->
                         Add To Cart
                     </button>
-                    <button mat-raised-button class="button2">
+                    <button mat-raised-button class="button2" (click)="purchase(product)">
                         <!-- <mat-icon>favorite</mat-icon> -->
                         Purchase
                     </button>

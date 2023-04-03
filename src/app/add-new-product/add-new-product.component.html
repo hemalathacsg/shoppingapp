@@ -1,8 +1,7 @@
-<div class="container mt-5">
+<!-- <div class="container mt-5">
     <div class="card p-2">
         <div class="row">
             <div class="col-6">
-                <!-- when u want to giv name to the form u will always start with # -->
                 <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>Product Name</mat-label>
@@ -36,4 +35,49 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+<div class="container mt-5">
+    <div class="card p-2">
+      <div class="row">
+        <div class="col-6">
+          <!-- when u want to give name to the form u will always start with # -->
+          <form #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Product Name</mat-label>
+              <input matInput placeholder="Product Name" [(ngModel)]="product.productName" name="productName"
+                pattern="[a-zA-Z ]*" required>
+              <mat-error *ngIf="productForm.controls['productName'].invalid">Product name must contain only letters and cannot be empty</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Product Description</mat-label>
+              <input matInput placeholder="Product Description" [(ngModel)]="product.productDescription"
+                name="productDescription" required>
+              <mat-error *ngIf="productForm.controls['productDescription'].invalid">Product description cannot be empty</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Product Actual Price</mat-label>
+              <input matInput placeholder="Product Actual Price" [(ngModel)]="product.productActualPrice"
+                name="productActualPrice" type="number" required>
+              <mat-error *ngIf="productForm.controls['productActualPrice'].invalid">Product actual price must be a number</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Product Discounted Price</mat-label>
+              <input matInput placeholder="Product Discounted Price" [(ngModel)]="product.productDiscountPrice"
+                name="productDiscountPrice" type="number" required>
+              <mat-error *ngIf="productForm.controls['productDiscountPrice'].invalid">Product discounted price must be a number</mat-error>
+            </mat-form-field>
+  
+            <div class="d-flex justify-content-end">
+              <button mat-stroked-button style="margin-right: 10px;" color="primary" type="submit">Add
+                Product</button>
+              <button mat-stroked-button color="primary" type="reset">Clear Form</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-6">
+          image area
+        </div>
+      </div>
+    </div>
+  </div>
+  

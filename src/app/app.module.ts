@@ -22,6 +22,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { CartComponent } from './cart/cart.component';
+import { MsalModule } from '@azure/msal-angular';
+import { PublicClientApplication } from '@azure/msal-browser';
 
 @NgModule({
   declarations: [
@@ -47,9 +49,10 @@ import { CartComponent } from './cart/cart.component';
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule,HttpClientModule,MatTableModule
+    MatInputModule,HttpClientModule,MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
-})
+}
+)
 export class AppModule { }
