@@ -1,7 +1,8 @@
 export interface Product{
-    // productId:number,
+    productId:number,
     productName:string,
     productDescription:string,
     productDiscountPrice:number,
-    productActualPrice:number
+    productActualPrice:number,
+    quantity:number
 }

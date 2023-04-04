@@ -10,7 +10,8 @@ export class ProductService {
   url2='http://localhost:8080/getAllProduct';
   url3='http://localhost:8080/addToCart';
   url4='http://localhost:8080/getAllCartProducts';
-
+  url5='http://localhost:8080/getAllCartProducts/${id}';
+  url6='http://localhost:8080/totalCartProductsPrice'
   constructor(private httpClient: HttpClient) { }
 
   listProducts():Observable<any[]>{
@@ -25,7 +26,11 @@ export class ProductService {
   public addToCart(product:Product){
     return this.httpClient.post(this.url3,product);
   }
-  public delete(id:string){
-
+  public delete(id:number):Observable<any>{
+    // const deleteurl=`${this.url4}/${id}`;
+    return this.httpClient.delete(this.url5);
+  }
+  public totalCartProductsPrice():Observable<any>{
+    return this.httpClient.get(this.url6);
   }
 }

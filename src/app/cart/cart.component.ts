@@ -9,20 +9,27 @@ import alertify from 'alertifyjs';
 })
 export class CartComponent {
   cartData: any = [];
-
+  cartprice:any;
   constructor(private productService:ProductService){
   }
   ngOnInit():void{
     this.productService.listCartProducts().subscribe(data=>{
       this.cartData=data;
-      console.log(this.cartData);
-    })
+    });
+    this.productService.totalCartProductsPrice().subscribe(data=>{
+      this.cartprice=data;
+    });
   }
   purchase(){
     alertify.success("purchased the product from cart successfully.");
   }
-  delete(cartProduct:any){
-    alertify.success("removed alert message but didnt delte the product");
-
+  delete(id:number=this.cartData.productId){
+    console.log('delete'+id)
+   this.productService.delete(id).subscribe(()=>{
+    this.productService.listCartProducts().subscribe(data=>{
+      this.cartData=data;
+      alertify.success("removed the cart product successfully");
+    });
+   });
   }
 }

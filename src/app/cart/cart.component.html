@@ -5,6 +5,7 @@
             <th>Product Description</th>
             <th>Product Actual Price</th>
             <th>Product Discounted Price</th>
+            <th>Quantity</th>
             <th>Actions</th>
         </tr>
         <tr *ngFor="let cartProduct of cartData" style="text-align: center;">
@@ -12,13 +13,43 @@
             <td>{{cartProduct.productDescription}}</td>
             <td>{{cartProduct.productActualPrice}}</td>
             <td>{{cartProduct.productDiscountPrice}}</td>
+            <td>{{cartProduct.Quantity}}</td>
             <td>
                 <div class="button-container">
                     <button mat-raised-button class="button1" (click)="purchase()">purchase</button>
                     <button mat-raised-button class="button2" (click)="delete(cartProduct.id)">delete</button>
+
                 </div>
             </td>
-
         </tr>
     </table>
 </div>
+<div>
+    <h2>Total Price: ₹{{ cartprice }}</h2>
+</div>
+
+
+
+<!-- <div class="carttable container">
+    <div class="card-deck d-flex justify-content-center">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let cartProduct of cartData">
+          <div class="card mb-4">
+            <img class="card-img-top" src="{{ cartProduct.imageUrl }}" alt="{{ cartProduct.productName }}" style="height: 150px; width: 150px;">
+            <div class="card-body">
+              <h5 class="card-title">{{ cartProduct.productName }}</h5>
+              <p class="card-text">{{ cartProduct.productDescription }}</p>
+              <p class="card-text">Actual Price: {{ cartProduct.productActualPrice }}</p>
+              <p class="card-text">Discounted Price: {{ cartProduct.productDiscountPrice }}</p>
+              <button class="btn btn-primary" (click)="purchase()">Purchase</button> &nbsp;
+              <button class="btn btn-primary" (click)="delete(cartProduct.id)">delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3>Total Price:</h3>
+</div> -->
