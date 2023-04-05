@@ -1,24 +1,38 @@
 <div class="prodtable">
     <table border="1">
         <tr style="text-align: center;">
+            <th>Product Id</th>
             <th>Product Name</th>
             <th>Product Description</th>
             <th>Product Actual Price</th>
             <th>Product Discounted Price</th>
+            <th>quantity</th>
             <th>Actions</th>
         </tr>
         <tr *ngFor="let product of productData" style="text-align: center;">
+            <td>{{product.productId}}</td>
             <td>{{product.productName}}</td>
             <td>{{product.productDescription}}</td>
             <td>{{product.productActualPrice}}</td>
             <td>{{product.productDiscountPrice}}</td>
             <td>
+                <a class="btn text-white" style="background-color: #55acee;"role="button" (click)="decProdQuantity(product.productId)">-</a>
+                <input type="text" class="inputbox prodquantity" disabled value="{{product.quantity}}">
+                <a class="btn text-white" style="background-color: #55acee;" role="button" (click)="incProdQuantity(product.productId)">+</a>
+                <!-- <a class="btn text-white" style="background-color: #55acee;" role="button"
+                    (click)="decProdQuantity(product.quantity)">-</a>
+                <input type="text" class="inputbox prodquantity" disabled value="{{prodQuantity}}">
+                <a class="btn text-white" style="background-color: #55acee;" role="button"
+                    (click)="incProdQuantity(product.quantity)">+</a> -->
+            </td>
+            <td>
                 <div class="button-container">
-                    <button mat-raised-button class="button1" (click)="addToCart(product)">
+
+                    <button mat-raised-button class="button2" (click)="addToCart(product)">
                         <!-- <mat-icon>favorite</mat-icon> -->
                         Add To Cart
                     </button>
-                    <button mat-raised-button class="button2" (click)="purchase(product)">
+                    <button mat-raised-button class="button3" (click)="purchase(product)">
                         <!-- <mat-icon>favorite</mat-icon> -->
                         Purchase
                     </button>

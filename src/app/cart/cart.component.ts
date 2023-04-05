@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import alertify from 'alertifyjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
@@ -9,10 +10,12 @@ import alertify from 'alertifyjs';
 })
 export class CartComponent {
   cartData: any = [];
-  cartprice:any;
+  cartprice: number = 0;
+  
   constructor(private productService:ProductService){
   }
-  ngOnInit():void{
+  
+  ngOnInit(): void {
     this.productService.listCartProducts().subscribe(data=>{
       this.cartData=data;
     });
@@ -20,16 +23,48 @@ export class CartComponent {
       this.cartprice=data;
     });
   }
-  purchase(){
+  
+  purchase(): void {
     alertify.success("purchased the product from cart successfully.");
   }
-  delete(id:number=this.cartData.productId){
-    console.log('delete'+id)
-   this.productService.delete(id).subscribe(()=>{
-    this.productService.listCartProducts().subscribe(data=>{
-      this.cartData=data;
-      alertify.success("removed the cart product successfully");
+  
+  delete(id: number): void {
+    console.log('delete ' + id);
+    this.productService.delete(id).subscribe(()=>{
+      this.productService.listCartProducts().subscribe(data=>{
+        this.cartData=data;
+        alertify.success("removed the cart product successfully");
+      });
     });
-   });
+  }
+  
+  incCartProdQuantity(productId: number): void {
+    this.productService.incCartProdQuantity(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Reload the product data after updating the quantity
+        this.productService.listProducts().subscribe(data => {
+          this.cartData = data;
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+  
+  decCartProdQuantity(productId: number): void {
+    this.productService.decCartProdQuantity(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Reload the product data after updating the quantity
+        this.productService.listProducts().subscribe(data => {
+          this.cartData = data;
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
   }
 }

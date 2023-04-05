@@ -1,6 +1,7 @@
 <div class="carttable">
     <table border="1">
         <tr style="text-align: center;">
+          <th>Product Id</th>
             <th>Product Name</th>
             <th>Product Description</th>
             <th>Product Actual Price</th>
@@ -9,15 +10,23 @@
             <th>Actions</th>
         </tr>
         <tr *ngFor="let cartProduct of cartData" style="text-align: center;">
+          <td>{{cartProduct.productId}}</td>
             <td>{{cartProduct.productName}}</td>
             <td>{{cartProduct.productDescription}}</td>
             <td>{{cartProduct.productActualPrice}}</td>
             <td>{{cartProduct.productDiscountPrice}}</td>
-            <td>{{cartProduct.Quantity}}</td>
+            <td>
+              <div class="button-container">
+                <a class="btn text-white" style="background-color: #55acee;"role="button" (click)="decCartProdQuantity(cartProduct.productId)">-</a>
+                <input type="text" class="inputbox prodquantity" value="{{cartProduct.quantity}}">
+                <a class="btn text-white" style="background-color: #55acee;" role="button" (click)="incCartProdQuantity(cartProduct.productId)">+</a>
+              </div>
+            </td>
+            <!-- <td><button mat-raised-button class="button1">quantity</button></td> -->
             <td>
                 <div class="button-container">
-                    <button mat-raised-button class="button1" (click)="purchase()">purchase</button>
-                    <button mat-raised-button class="button2" (click)="delete(cartProduct.id)">delete</button>
+                    <button mat-raised-button class="button2" (click)="purchase()">purchase</button>
+                    <button mat-raised-button class="button3" (click)="delete(cartProduct.id)">delete</button>
 
                 </div>
             </td>

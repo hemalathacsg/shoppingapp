@@ -10,30 +10,62 @@ import alertify from 'alertifyjs';
 })
 export class ProductsComponent {
   productData: any = [];
-  constructor(private productService:ProductService){
+  prodQuantity:number=1;
+  constructor(private productService: ProductService) {
 
   }
-  ngOnInit():void{
-    this.productService.listProducts().subscribe(data=>{
-      this.productData=data;
+  ngOnInit(): void {
+    this.productService.listProducts().subscribe(data => {
+      this.productData = data;
       console.log(this.productData);
     })
   }
-  addToCart(product: any){
+  addToCart(product: any) {
     // console.log(product);
     this.productService.addToCart(product).subscribe(
       (response: any) => {
-          console.log(response);
-          alertify.success("added to cart successfully.");
+        console.log(response);
+        alertify.success("added to cart successfully.");
 
       },
       (error: HttpErrorResponse) => {
-          console.log(error);
+        console.log(error);
       }
-  );
+    );
   }
-  purchase(product:any){
+  purchase(product: any) {
     console.log(product);
     alertify.success("purchased the product successfully.");
   }
+  incProdQuantity(productId: number) {
+    this.productService.incProdQuantity(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Reload the product data after updating the quantity
+        this.productService.listProducts().subscribe(data => {
+          this.productData = data;
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+  }
+
+  decProdQuantity(productId: number) {
+    this.productService.decProdQuantity(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        // Reload the product data after updating the quantity
+        this.productService.listProducts().subscribe(data => {
+          this.productData = data;
+        });
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    );
+    }
+  
+
 }
