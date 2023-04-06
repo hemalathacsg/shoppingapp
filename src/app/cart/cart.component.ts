@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import alertify from 'alertifyjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router'; // Import the Router module
 
 @Component({
   selector: 'app-cart',
@@ -11,8 +12,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CartComponent {
   cartData: any = [];
   cartprice: number = 0;
+  // router: any;
   
-  constructor(private productService:ProductService){
+  constructor(private productService:ProductService,private router:Router){
   }
   
   ngOnInit(): void {
@@ -66,5 +68,8 @@ export class CartComponent {
         console.log(error);
       }
     );
+  }
+  showProductDetails(productId:number){
+    this.router.navigate(['/details',productId])
   }
 }

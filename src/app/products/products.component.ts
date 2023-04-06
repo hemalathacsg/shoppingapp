@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../service/product.service';
 import alertify from 'alertifyjs';
+import { switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +13,9 @@ import alertify from 'alertifyjs';
 export class ProductsComponent {
   productData: any = [];
   prodQuantity:number=1;
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+    private router:Router
+    ) {
 
   }
   ngOnInit(): void {
@@ -38,34 +42,30 @@ export class ProductsComponent {
     alertify.success("purchased the product successfully.");
   }
   incProdQuantity(productId: number) {
-    this.productService.incProdQuantity(productId).subscribe(
-      (response: any) => {
-        console.log(response);
-        // Reload the product data after updating the quantity
-        this.productService.listProducts().subscribe(data => {
-          this.productData = data;
-        });
-      },
-      (error: HttpErrorResponse) => {
+    this.productService.incProdQuantity(productId)
+      .pipe(
+        switchMap(() => this.productService.listProducts())
+      )
+      .subscribe(data => {
+        this.productData = data;
+      }, error => {
         console.log(error);
-      }
-    );
+      });
   }
-
-  decProdQuantity(productId: number) {
-    this.productService.decProdQuantity(productId).subscribe(
-      (response: any) => {
-        console.log(response);
-        // Reload the product data after updating the quantity
-        this.productService.listProducts().subscribe(data => {
-          this.productData = data;
-        });
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    );
-    }
   
+  decProdQuantity(productId: number) {
+    this.productService.decProdQuantity(productId)
+      .pipe(
+        switchMap(() => this.productService.listProducts())
+      )
+      .subscribe(data => {
+        this.productData = data;
+      }, error => {
+        console.log(error);
+      });
+  }
+  showProductDetails(productId:number){
+    this.router.navigate(['/details',productId])
+  }
 
 }

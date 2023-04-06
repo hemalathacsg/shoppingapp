@@ -16,9 +16,9 @@
             <td>{{product.productActualPrice}}</td>
             <td>{{product.productDiscountPrice}}</td>
             <td>
-                <a class="btn text-white" style="background-color: #55acee;"role="button" (click)="decProdQuantity(product.productId)">-</a>
-                <input type="text" class="inputbox prodquantity" disabled value="{{product.quantity}}">
-                <a class="btn text-white" style="background-color: #55acee;" role="button" (click)="incProdQuantity(product.productId)">+</a>
+                <a class="btn text-white" style="background-color: #55acee;"role="button" type="number" (click)="decProdQuantity(product.productId)">-</a>
+                <input type="text" class="inputbox prodquantity" value="{{product.quantity}}">
+                <a class="btn text-white" style="background-color: #55acee;" role="button" type="number" (click)="incProdQuantity(product.productId)">+</a>
                 <!-- <a class="btn text-white" style="background-color: #55acee;" role="button"
                     (click)="decProdQuantity(product.quantity)">-</a>
                 <input type="text" class="inputbox prodquantity" disabled value="{{prodQuantity}}">
@@ -36,8 +36,11 @@
                         <!-- <mat-icon>favorite</mat-icon> -->
                         Purchase
                     </button>
+                    <a class="btn text white" style="background-color: #55acee;" role="button" (click)="showProductDetails(product.productId)">view more</a>
+
                 </div>
             </td>
         </tr>
     </table>
 </div>
+

@@ -24,6 +24,8 @@ import {MatTableModule} from '@angular/material/table';
 import { CartComponent } from './cart/cart.component';
 import { MsalModule } from '@azure/msal-angular';
 import { PublicClientApplication } from '@azure/msal-browser';
+import { DetailsComponent } from './details/details.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PublicClientApplication } from '@azure/msal-browser';
     SidenavComponent,
     ProductsComponent,
     AddNewProductComponent,
-    CartComponent
+    CartComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { PublicClientApplication } from '@azure/msal-browser';
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule,HttpClientModule,MatTableModule,
+    MatInputModule,HttpClientModule,MatTableModule,MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

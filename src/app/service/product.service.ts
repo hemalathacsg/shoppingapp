@@ -34,21 +34,25 @@ export class ProductService {
     return this.httpClient.get(this.url6);
   }
   public incProdQuantity(productId: number): Observable<any> {
-    const url = `http://localhost:8080/incProdQuantity/${productId}`;
-    return this.httpClient.put(url, {});
+    const url7 = `http://localhost:8080/incProdQuantity/${productId}`;
+    return this.httpClient.put(url7, {});
   }
 
   public decProdQuantity(productId: number): Observable<any> {
-    const url = `http://localhost:8080/decProdQuantity/${productId}`;
-    return this.httpClient.put(url, {});
+    const url8 = `http://localhost:8080/decProdQuantity/${productId}`;
+    return this.httpClient.put(url8, {});
   }
   public incCartProdQuantity(productId: number): Observable<any> {
-    const url = `http://localhost:8080/incCartProdQuantity/${productId}`;
-    return this.httpClient.put(url, {});
+    const url9 = `http://localhost:8080/incCartProdQuantity/${productId}`;
+    return this.httpClient.put(url9, {});
   }
 
   public decCartProdQuantity(productId: number): Observable<any> {
-    const url = `http://localhost:8080/decCartProdQuantity/${productId}`;
-    return this.httpClient.put(url, {});
+    const url10 = `http://localhost:8080/decCartProdQuantity/${productId}`;
+    return this.httpClient.put(url10, {});
   }
-}
+  public viewProductDetails(productId:number):Observable<any>
+{
+  const url11=`http://localhost:8080/viewProductDetails/${productId}`;
+  return this.httpClient.get(url11);
+}}
