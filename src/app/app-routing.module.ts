@@ -6,25 +6,30 @@ import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetailsComponent } from './details/details.component';
+import { ProfileComponent } from './profile/profile.component';
+import { BrowserUtils } from '@azure/msal-browser';
+import { MsalGuard } from '@azure/msal-angular';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: SidenavComponent,
+  {path: '', component: SidenavComponent, canActivate: [MsalGuard],
     children: [
       { path: '', redirectTo: 'product', pathMatch: 'full' },
       { path: 'product', component: ProductsComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'add-new-product', component: AddNewProductComponent },
       {path:'cart', component:CartComponent},
-      { path: 'details/:id', component: DetailsComponent }
+      { path: 'details/:id', component: DetailsComponent },
+      {path:'profile', component:ProfileComponent}
     ]
   }
+
 ];
+const isIframe = window !== window.parent && !window.opener;
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    initialNavigation: !isIframe ? 'disabled' : 'disabled' // Don't perform initial navigation in iframes
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

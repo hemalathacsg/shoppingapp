@@ -1,4 +1,4 @@
-<div class="prodtable">
+<div class="prodtable" *ngIf="productData">
     <table border="1">
         <tr style="text-align: center;">
             <th>Product Id</th>
@@ -19,11 +19,6 @@
                 <a class="btn text-white" style="background-color: #55acee;"role="button" type="number" (click)="decProdQuantity(product.productId)">-</a>
                 <input type="text" class="inputbox prodquantity" value="{{product.quantity}}">
                 <a class="btn text-white" style="background-color: #55acee;" role="button" type="number" (click)="incProdQuantity(product.productId)">+</a>
-                <!-- <a class="btn text-white" style="background-color: #55acee;" role="button"
-                    (click)="decProdQuantity(product.quantity)">-</a>
-                <input type="text" class="inputbox prodquantity" disabled value="{{prodQuantity}}">
-                <a class="btn text-white" style="background-color: #55acee;" role="button"
-                    (click)="incProdQuantity(product.quantity)">+</a> -->
             </td>
             <td>
                 <div class="button-container">

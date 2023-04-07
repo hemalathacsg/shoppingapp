@@ -30,9 +30,9 @@ export class CartComponent {
     alertify.success("purchased the product from cart successfully.");
   }
   
-  delete(id: number): void {
-    console.log('delete ' + id);
-    this.productService.delete(id).subscribe(()=>{
+  delete(productId: number): void {
+    console.log('delete ' + productId);
+    this.productService.delete(productId).subscribe(()=>{
       this.productService.listCartProducts().subscribe(data=>{
         this.cartData=data;
         alertify.success("removed the cart product successfully");

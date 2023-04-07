@@ -21,7 +21,7 @@ export class AddNewProductComponent {
         // imageurl: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.oppo.com%2Fen%2Fsmartphones%2Fseries-find-n%2Ffind-n2-flip%2F&psig=AOvVaw1V_5jTaSIr79K04QkXTsiO&ust=1680677129593000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIiL6avQj_4CFQAAAAAdAAAAABAE"
     }
 
-    constructor(private formBuilder: FormBuilder, private productService: ProductService) {
+    constructor(private productService: ProductService) {
     }
 
     addProduct(productForm: NgForm) {

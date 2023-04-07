@@ -22,10 +22,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { CartComponent } from './cart/cart.component';
-import { MsalModule } from '@azure/msal-angular';
-import { PublicClientApplication } from '@azure/msal-browser';
+import { MsalModule, MsalRedirectComponent, MsalGuard, MsalInterceptor } from '@azure/msal-angular'; // Import MsalInterceptor
+import { PublicClientApplication, InteractionType } from '@azure/msal-browser';
 import { DetailsComponent } from './details/details.component';
 import {MatCardModule} from '@angular/material/card';
+import { HTTP_INTERCEPTORS } from "@angular/common/http"; // Import 
+
+const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 @NgModule({
   declarations: [
@@ -52,10 +55,38 @@ import {MatCardModule} from '@angular/material/card';
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule,HttpClientModule,MatTableModule,MatCardModule
+    MatInputModule,HttpClientModule,MatTableModule,MatCardModule,
+    MsalModule.forRoot( new PublicClientApplication({
+      auth: {
+        clientId: '269facaa-48dd-426a-8a06-84140c321115', // Application (client) ID from the app registration
+        authority: 'a9c50c6c-2ecc-4653-99b2-58024af91866', // The Azure cloud instance and the app's sign-in audience (tenant ID, common, organizations, or consumers)
+        redirectUri: 'http://localhost:4200',// This is your redirect URI
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: isIE, // Set to true for Internet Explorer 11
+      }
+    }), 
+    { interactionType: InteractionType.Redirect,
+      authRequest: {
+        scopes: ['user.read']}
+      },
+      {
+        interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
+        protectedResourceMap: new Map([ 
+            ['https://graph.microsoft.com', ['user.read']]
+        ])
+      } )
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MsalInterceptor,
+      multi: true
+    },
+     MsalGuard // MsalGuard added as provider here
+],
+  bootstrap: [AppComponent, MsalRedirectComponent]
 }
 )
 export class AppModule { }

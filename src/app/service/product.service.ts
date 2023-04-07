@@ -10,7 +10,7 @@ export class ProductService {
   url2 = 'http://localhost:8080/getAllProduct';
   url3 = 'http://localhost:8080/addToCart';
   url4 = 'http://localhost:8080/getAllCartProducts';
-  url5 = 'http://localhost:8080/getAllCartProducts/${id}';
+  url5 = 'http://localhost:8080/deleteCartProduct/${productId}';
   url6 = 'http://localhost:8080/totalCartProductsPrice'
   constructor(private httpClient: HttpClient) { }
 
