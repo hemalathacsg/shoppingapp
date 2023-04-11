@@ -55,11 +55,12 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
+    
     MatInputModule,HttpClientModule,MatTableModule,MatCardModule,
     MsalModule.forRoot( new PublicClientApplication({
       auth: {
-        clientId: '269facaa-48dd-426a-8a06-84140c321115', // Application (client) ID from the app registration
-        authority: 'a9c50c6c-2ecc-4653-99b2-58024af91866', // The Azure cloud instance and the app's sign-in audience (tenant ID, common, organizations, or consumers)
+        clientId: 'a4b82ff5-6a17-4ad7-9377-8346a0694c3a', // Application (client) ID from the app registration
+        authority: 'https://login.microsoftonline.com/a9c50c6c-2ecc-4653-99b2-58024af91866', // The Azure cloud instance and the app's sign-in audience (tenant ID, common, organizations, or consumers)
         redirectUri: 'http://localhost:4200',// This is your redirect URI
       },
       cache: {

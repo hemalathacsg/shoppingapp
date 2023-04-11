@@ -1,3 +1,4 @@
+<div *ngIf="loginDisplay">
 <mat-toolbar color="primary">
     <!-- <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
         <mat-icon>menu</mat-icon>
@@ -27,7 +28,7 @@
             <mat-icon>help</mat-icon><span>Help</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="#">
+        <button mat-menu-item routerLink="#" *ngIf="loginDisplay" (click)="logout()">
             <mat-icon>exit_to_app</mat-icon>Logout
         </button>
     </mat-menu>
@@ -78,6 +79,7 @@
         <!-- </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>  -->
-<router-outlet> 
-   
- </router-outlet> 
+
+    <!--This is to avoid reload during acquireTokenSilent() because of hidden iframe -->
+    <router-outlet *ngIf="!isIframe"></router-outlet>
+  </div>

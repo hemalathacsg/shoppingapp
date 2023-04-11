@@ -12,16 +12,18 @@ import { MsalGuard } from '@azure/msal-angular';
 
 
 const routes: Routes = [
-  {path: '', component: SidenavComponent, canActivate: [MsalGuard],
+  
+  {path:'', component: SidenavComponent,
     children: [
-      { path: '', redirectTo: 'product', pathMatch: 'full' },
+      { path: '', redirectTo: 'product', pathMatch: 'full'},
       { path: 'product', component: ProductsComponent },
-      { path: 'add-new-product', component: AddNewProductComponent },
+      { path: 'add-new-product', component: AddNewProductComponent},
       {path:'cart', component:CartComponent},
-      { path: 'details/:id', component: DetailsComponent },
+      { path: 'details/:id', component: DetailsComponent},
       {path:'profile', component:ProfileComponent}
     ]
-  }
+  },
+  {path:'sidenav', component: SidenavComponent}
 
 ];
 const isIframe = window !== window.parent && !window.opener;
