@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { CartComponent } from './cart/cart.component';
-import { LoginComponent } from './login/login.component';
 import { ProductsComponent } from './products/products.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DetailsComponent } from './details/details.component';
@@ -23,14 +22,14 @@ const routes: Routes = [
       {path:'profile', component:ProfileComponent}
     ]
   },
-  {path:'sidenav', component: SidenavComponent}
+  // {path:'sidenav', component: SidenavComponent}
 
 ];
 const isIframe = window !== window.parent && !window.opener;
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
-    initialNavigation: !isIframe ? 'disabled' : 'disabled' // Don't perform initial navigation in iframes
+    initialNavigation: isIframe ? 'disabled' : 'disabled' // Don't perform initial navigation in iframes
   })],
   exports: [RouterModule]
 })

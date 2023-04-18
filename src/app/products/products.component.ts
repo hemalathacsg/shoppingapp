@@ -45,6 +45,7 @@ export class ProductsComponent {
     this.productService.incProdQuantity(productId).subscribe(
       (response: any) => {
         console.log(response);
+        console.log("incProdQuantity Response is printing");
         // Reload the product data after updating the quantity
         this.productService.listProducts().subscribe(data => {
           this.productData = data;
@@ -58,6 +59,7 @@ export class ProductsComponent {
   decProdQuantity(productId: number) {
     this.productService.decProdQuantity(productId).subscribe(
       (response: any) => {
+        console.log("decProdQuantity Response is printing");
         console.log(response);
         // Reload the product data after updating the quantity
         this.productService.listProducts().subscribe(data => {

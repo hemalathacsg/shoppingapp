@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'ap1';
   isIframe = false;
-  loginDisplay = false;
+  loginDisplay = true;
   private readonly _destroying$ = new Subject<void>();
 
   constructor(private router: Router, @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration, private broadcastService: MsalBroadcastService, private authService: MsalService, private http: HttpClient) { }
@@ -34,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   login() {
+    
     if (this.msalGuardConfig.authRequest) {
       this.authService.loginPopup({ ...this.msalGuardConfig.authRequest } as PopupRequest)
         .subscribe({
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
             this.setLoginDisplay();
 
             // Navigate to SidenavComponent after successful login
-            this.router.navigate(['/sidenav']);
+            this.router.navigate(['/']);
             // Redirect to SidenavComponent after successful login
             // this.authService.instance.setActiveAccount(result.account);
             // this.authService.instance.setRedirectHash('/sidenav');

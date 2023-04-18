@@ -32,6 +32,7 @@ export class CartComponent {
   
   delete(productId: number): void {
     console.log('delete ' + productId);
+    console.log(typeof productId);
     this.productService.delete(productId).subscribe(()=>{
       this.productService.listCartProducts().subscribe(data=>{
         this.cartData=data;
@@ -41,8 +42,10 @@ export class CartComponent {
   }
   
   incCartProdQuantity(productId: number): void {
+    console.log(typeof productId);
     this.productService.incCartProdQuantity(productId).subscribe(
       (response: any) => {
+        console.log("incCartProdQuantity Respeonse is printing");
         console.log(response);
         // Reload the product data after updating the quantity
         this.productService.listProducts().subscribe(data => {
@@ -56,8 +59,10 @@ export class CartComponent {
   }
   
   decCartProdQuantity(productId: number): void {
+    console.log(typeof productId);
     this.productService.decCartProdQuantity(productId).subscribe(
       (response: any) => {
+        console.log("decCartProdQuantity Response is printing");
         console.log(response);
         // Reload the product data after updating the quantity
         this.productService.listProducts().subscribe(data => {

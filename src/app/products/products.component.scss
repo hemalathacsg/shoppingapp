@@ -1,13 +1,11 @@
-
+.prodtable{
+  // position: absolute;
+  // width: 100%;
+  display: flex;
+  padding-top: 50px;
+}
 table {
-    width: 70%;
-  }
-  .prodtable{
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    // align-items: center;
-    // height: 100vh;
+    width: 90%;
   }
 
 .button-container {
